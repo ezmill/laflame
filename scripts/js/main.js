@@ -4,7 +4,7 @@ var isMobile = false;
 var container = document.getElementById('container');
 var renderSize;
 var PATH = './assets/';
-var mouse = new THREE.Vector2(0.0, 0.0);
+var mouse = new THREE.Vector2(0.008333333333333304, -0.6313725490196078);
 var time = 0.0;
 var id;
 var scene, camera, renderer, texture, mMaterial;
