@@ -11,7 +11,7 @@ function MultipassMaterial(RENDERER, SCENE, CAMERA, TEXTURE, SHADERS) {
     this.shader2 = SHADERS[1];
     this.shader3 = SHADERS[2];
     this.outputShader = SHADERS[3];
-    this.alphaTex = loader.load(PATH + "textures/meaning.jpg");
+    this.alphaTex = textureLoader.load(PATH + "textures/meaning.jpg");
     this.mesh;
 
 
@@ -97,9 +97,10 @@ function RenderBuffer(SHADER, SCENE) {
         this.material = new THREE.ShaderMaterial({
             uniforms: this.shader.uniforms,
             vertexShader: this.shader.vertexShader,
-            fragmentShader: this.shader.fragmentShader
+            fragmentShader: this.shader.fragmentShader,
+            side: THREE.DoubleSide
         });
-        this.geometry = new THREE.PlaneGeometry(2, 2);
+        this.geometry = new THREE.PlaneGeometry(renderSize.x, renderSize.y);
         this.mesh = new THREE.Mesh(this.geometry, this.material);
         this.mesh.position.set(0, 0, 0);
         this.scene.add(this.mesh);

@@ -5,32 +5,50 @@ var container = document.getElementById('container');
 var renderSize;
 var PATH = './assets/';
 var mouse = new THREE.Vector2(0.008333333333333304, -0.6313725490196078);
+var cameraMouse = new THREE.Vector2(0.0,0.0);
 var time = 0.0;
 var id;
 var scene, camera, renderer, texture, mMaterial;
 var debounceResize;
-var loader = new THREE.TextureLoader();
+var textureLoader = new THREE.TextureLoader();
+var objLoader = new THREE.OBJLoaderGEO();
 var capturer = new CCapture( { framerate: 60, format: 'webm', workersPath: 'js/' } );
 var FRAME = 0;
 var shaders, uniforms;
-var alphaTex = loader.load(PATH + "textures/t-alpha2.jpg", function(){
+var matcapMaterial;
+var manager = new THREE.LoadingManager();
+manager.onProgress = function ( item, loaded, total ) {
+
+    console.log( item, loaded, total );
+
+};
+var alphaTex = textureLoader.load(PATH + "textures/t-alpha3.jpg", function(){
     init();
 })
 
 function init() {
-    scene = new THREE.Scene();
-    camera = new THREE.Camera();
-    camera.position.z = 1;
-
     setRenderSize();
 
+    scene = new THREE.Scene();
+    // camera = new THREE.Camera();
+    // camera = new THREE.Orthograph();
+    // camera.position.z = 1;
+    // camera = new THREE.PerspectiveCamera( 45, renderSize.x / renderSize.y, 0.01, 100000 );
+    camera = new THREE.OrthographicCamera( renderSize.x / - 2, renderSize.x / 2, renderSize.y / 2, renderSize.y / - 2, 0.01, 10000  );
+    camera.position.set(0,0,1000);
+    // controls = new THREE.OrbitControls(camera);
+
+
+
     renderer = new THREE.WebGLRenderer({
-        preserveDrawingBuffer: true
+        preserveDrawingBuffer: true,
+        antialias: true
     });
     renderer.setSize(renderSize.x, renderSize.y);
-    renderer.setClearColor(0xffffff, 1.0);
+    renderer.setClearColor(0x000000, 1.0);
    
     createMultipassMaterial();
+    createTravis();
 
     debounceResize = debounce(onWindowResize, 250);
     window.addEventListener("resize", debounceResize);
@@ -47,7 +65,8 @@ function init() {
 }
 
 function createMultipassMaterial(){
-    texture = loader.load(PATH + "textures/maxresdefault.jpg", function(){
+    texture = textureLoader.load(PATH + "textures/fire.jpg", function(){
+    // texture = textureLoader.load("../multipass/assets/textures/clouds.jpg", function(){
         shaders = [
             new AShader(),
             new BShader(),
@@ -63,8 +82,68 @@ function createMultipassMaterial(){
         mMaterial = new MultipassMaterial(renderer, scene, camera, texture, shaders);
         mMaterial.init();
         mMaterial.setUniforms(uniforms);
+        matcapMaterial = new THREE.ShaderMaterial({
+        
+            uniforms: { 
+                tNormal:{type: 't', value: THREE.ImageUtils.loadTexture( PATH + 'textures/243-normal.jpg' ) },
+                tMatCap:{type: 't', value: THREE.ImageUtils.loadTexture( PATH + 'textures/944_large_remake2.jpg' ) },
+                time:{type: 'f', value: 0 },
+                bump:{type: 'f', value: 0 },
+                noise:{type: 'f', value: .04 },
+                repeat:{type: 'v2', value: new THREE.Vector2( 1, 1 ) },
+                useNormal:{type: 'f', value: 0 },
+                useRim:{type: 'f', value: 1 },
+                rimPower:{type: 'f', value: 2 },
+                useScreen:{type: 'f', value: 0 },
+                normalScale:{type: 'f', value: .5 },
+                normalRepeat:{type: 'f', value: 1 },
+                rimTexture: {type: 't', value: mMaterial.buffers[2].renderTarget}
+            },
+            vertexShader: document.getElementById( 'vertexShader' ).textContent,
+            fragmentShader: document.getElementById( 'fragmentShader' ).textContent,
+            wrapping: THREE.ClampToEdgeWrapping,
+            shading: THREE.SmoothShading,
+            side: THREE.DoubleSide
+            
+        } );
+
+        matcapMaterial.uniforms.tMatCap.value.wrapS = matcapMaterial.uniforms.tMatCap.value.wrapT = 
+        THREE.ClampToEdgeWrapping;
+        
+        matcapMaterial.uniforms.tNormal.value.wrapS = matcapMaterial.uniforms.tNormal.value.wrapT = 
+        THREE.RepeatWrapping;
+        objLoader.load(PATH + "models/newpose.obj", function(object) {
+
+            object.traverse(function(child) {
+
+                if (child instanceof THREE.Mesh) {
+                    child.material = matcapMaterial;
+                    child.geometry.computeVertexNormals();
+                    child.geometry.mergeVertices();
+                }
+            });
+            object.scale.x = object.scale.y = object.scale.z = 2.0;
+            // object.position.copy(params.position);
+            object.position.set(0,0,100);
+            // object.rotation.copy(params.rotation);
+
+            scene.add(object);
+
+        }, onProgress, onError);
     })
 }
+
+function createTravis(){
+    
+}
+function onProgress(xhr) {
+    if ( xhr.lengthComputable ) {
+        var percentComplete = xhr.loaded / xhr.total * 100;
+        console.log( Math.round(percentComplete, 2) + '% downloaded' );
+    }
+
+};
+function onError(xhr) {};
 
 function animate() {
     id = requestAnimationFrame(animate);
@@ -78,11 +157,17 @@ function render(){
     time += 0.01;
     uniforms["time"] = time;    
     uniforms["FRAME"] += 1.0;    
-    // uniforms["mouse"].x = 0.001388888888888884;
-    // uniforms["mouse"].y = 0.35686274509803917; 
+    uniforms["mouse"].x = 0.001388888888888884;
+    uniforms["mouse"].y = 0.35686274509803917; 
 
     mMaterial.update();
     mMaterial.setUniforms(uniforms);
+
+    matcapMaterial.uniforms["rimTexture"].value = mMaterial.buffers[2].renderTarget;
+
+    camera.position.x = (camera.position.x - cameraMouse.x)*0.05;
+    camera.position.y = (-camera.position.y - cameraMouse.y)*0.05;
+    camera.lookAt(scene.position);
 
     capturer.capture( renderer.domElement );
 }
@@ -91,7 +176,11 @@ function onMouseMove(event) {
     mouse.x = (event.pageX / renderSize.x) * 2 - 1;  
     // mouse.x = Math.random()*2 - 1;          
     mouse.y = -(event.pageY / renderSize.y) * 2 + 1;
-    // mouse.y = Math.random()*2 - 1;          
+    // mouse.y = Math.random()*2 - 1;       
+
+    cameraMouse.x = ( event.pageX - renderSize.x/2 )*4;
+    cameraMouse.y = ( event.pageY - renderSize.y/2 )*4;
+
 
 }
 
