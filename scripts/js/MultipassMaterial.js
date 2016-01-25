@@ -11,7 +11,6 @@ function MultipassMaterial(RENDERER, SCENE, CAMERA, TEXTURE, SHADERS) {
     this.shader2 = SHADERS[1];
     this.shader3 = SHADERS[2];
     this.outputShader = SHADERS[3];
-    this.alphaTex = textureLoader.load(PATH + "textures/meaning.jpg");
     this.mesh;
 
 

@@ -5,18 +5,246 @@
 		body{
 			margin: 0;
 			padding: 0;
-			overflow: hidden;
+			/*overflow: hidden;*/
 		}
 		canvas{
 			width: 100%;
 			height: 100%;
+			position: fixed;
 		}
 	</style>
+	<link rel="stylesheet" href="main.css">
+	<script src="https://use.fonticons.com/c4d554ac.js"></script>
+
 </head>
 <body>
-
+	<div id="loader">
+		<p>LOADED <span id="loadedPercent">0</span>%</p>
+	</div>
 	<div id="container">
 	</div>
+	<div id="wrapper">
+<!-- 			<div id="header">
+		<h1>TRAVIS SCOTT</h1>
+	</div>
+ -->	
+ <div class="title">
+		<p>ANTI TOUR TICKETS</p>
+	</div>
+	<div id="grid">
+		<div class="column">
+			<div class="col-item">2/26</div>
+			<div class="col-item">2/28</div>
+			<div class="col-item">3/01</div>
+			<div class="col-item">3/04</div>
+			<div class="col-item">3/05</div>
+			<div class="col-item">3/06</div>
+			<div class="col-item">3/08</div>
+			<div class="col-item">3/09</div>
+			<div class="col-item">3/12</div>
+			<div class="col-item">3/13</div>
+			<div class="col-item">3/15</div>
+			<div class="col-item">3/18</div>
+			<div class="col-item">3/19</div>
+			<div class="col-item">3/20</div>
+			<div class="col-item">3/22</div>
+			<div class="col-item">3/23</div>
+			<div class="col-item">3/24</div>
+			<div class="col-item">3/26</div>
+			<div class="col-item">3/27</div>
+			<div class="col-item">3/30</div>
+			<div class="col-item">4/02</div>
+			<div class="col-item">4/03</div>
+			<div class="col-item">4/05</div>
+			<div class="col-item">4/06</div>
+			<div class="col-item">4/07</div>
+			<div class="col-item">4/09</div>
+			<div class="col-item">4/10</div>
+			<div class="col-item">4/13</div>
+			<div class="col-item">4/14</div>
+			<div class="col-item">4/15</div>
+			<div class="col-item">4/18</div>
+			<div class="col-item">4/20</div>
+			<div class="col-item">4/21</div>
+			<div class="col-item">4/23</div>
+			<div class="col-item">4/24</div>
+			<div class="col-item">4/27</div>
+			<div class="col-item">4/29</div>
+			<div class="col-item">4/30</div>
+			<div class="col-item">5/03</div>
+			<div class="col-item">5/04</div>
+			<div class="col-item">5/07</div>
+		</div>
+		<div class="column">
+			<div class="col-item">San Diego, CA</div>
+			<div class="col-item">San Jose, CA</div>
+			<div class="col-item">Phoenix, AZ</div>
+			<div class="col-item">Austin, TX </div>
+			<div class="col-item">Houston, TX</div>
+			<div class="col-item">Dallas, TX</div>
+			<div class="col-item">New Orleans, LA</div>
+			<div class="col-item">Atlanta, GA</div>
+			<div class="col-item">Jacksonville, FL</div>
+			<div class="col-item">Tampa, FL </div>
+			<div class="col-item">Miami, FL</div>
+			<div class="col-item">Nashville, TN</div>
+			<div class="col-item">Cincinnati, OH</div>
+			<div class="col-item">Charlotte, NC</div>
+			<div class="col-item">Washington, DC</div>
+			<div class="col-item">Buffalo, NY</div>
+			<div class="col-item">Detroit, MI</div>
+			<div class="col-item">Hartford, CT </div>
+			<div class="col-item">Brooklyn, NY</div>
+			<div class="col-item">Brooklyn, NY</div>
+			<div class="col-item">Newark, NJ</div>
+			<div class="col-item">Philadelphia, PA</div>
+			<div class="col-item">Quebec City</div>
+			<div class="col-item">Montreal</div>
+			<div class="col-item">Montreal</div>
+			<div class="col-item">Baltimore, MD</div>
+			<div class="col-item">Boston, MA</div>
+			<div class="col-item">Toronto</div>
+			<div class="col-item">Toronto</div>
+			<div class="col-item">Chicago, IL</div>
+			<div class="col-item">Winnipeg</div>
+			<div class="col-item">Edmonton</div>
+			<div class="col-item">Calgary</div>
+			<div class="col-item">Vancouver</div>
+			<div class="col-item">Seattle, WA</div>
+			<div class="col-item">Salt Lake City, UT</div>
+			<div class="col-item">Las Vegas, NV</div>
+			<div class="col-item">Las Vegas, NV</div>
+			<div class="col-item">Los Angeles, CA</div>
+			<div class="col-item">Los Angeles, CA</div>
+			<div class="col-item">Oakland, CA</div>
+		</div>
+		<div class="column">
+			<div class="col-item">Viejas Arena</div>
+			<div class="col-item">SAP Center </div>
+			<div class="col-item">Talking Stick Arena</div>
+			<div class="col-item">Frank Erwin Center **</div>
+			<div class="col-item">Toyota Center**</div>
+			<div class="col-item">American Airlines Center</div>
+			<div class="col-item">Smoothie King Center</div>
+			<div class="col-item">Philips Arena</div>
+			<div class="col-item">Jacksonville Veterans Memorial Arena</div>
+			<div class="col-item">Amalie Arena </div>
+			<div class="col-item">American Airlines Arena</div>
+			<div class="col-item">Bridgestone Arena*</div>
+			<div class="col-item">U.S. Bank Arena</div>
+			<div class="col-item">The Time Warner Cable Arena</div>
+			<div class="col-item">Verizon Center</div>
+			<div class="col-item">First Niagara Center**</div>
+			<div class="col-item">Palace of Auburn Hills*</div>
+			<div class="col-item">XL Center**</div>
+			<div class="col-item">Barclays Center</div>
+			<div class="col-item">Barclays Center</div>
+			<div class="col-item">Prudential Center</div>
+			<div class="col-item">Wells Fargo Center**</div>
+			<div class="col-item">Centre Videotron</div>
+			<div class="col-item">Bell Centre**</div>
+			<div class="col-item">Bell Centre**</div>
+			<div class="col-item">Royal Farms Arena</div>
+			<div class="col-item">TD Garden</div>
+			<div class="col-item">Air Canada Center</div>
+			<div class="col-item">Air Canada Center</div>
+			<div class="col-item">United Center</div>
+			<div class="col-item">MTS Centre</div>
+			<div class="col-item">Rexall Place</div>
+			<div class="col-item">Scotiabank Saddledome</div>
+			<div class="col-item">Rogers Arena</div>
+			<div class="col-item">Key Arena</div>
+			<div class="col-item">Vivint.SmartHome Arena**</div>
+			<div class="col-item">Mandalay Bay*</div>
+			<div class="col-item">Mandalay Bay*</div>
+			<div class="col-item">Forum </div>
+			<div class="col-item">Forum </div>
+			<div class="col-item">Oracle</div>
+		</div>
+		<div class="column">
+			<div class="col-item"><a href="http://www.ticketmaster.com/rihanna-anti-world-tour-2016-san-diego-california-02-26-2016/event/0A004F74B5D54018?artistid=1013826&majorcatid=10001&minorcatid=1&tm_link=search_msg-0_0A004F74B5D54018">Buy Ticket</a></div>
+			<div class="col-item"><a href="http://www.ticketmaster.com/rihanna-anti-world-tour-2016-san-jose-california-02-28-2016/event/1C004F732B6D64A2?artistid=1013826&majorcatid=10001&minorcatid=1">Buy Ticket</a></div>
+			<div class="col-item"><a href="http://www.ticketmaster.com/rihanna-anti-world-tour-2016-phoenix-arizona-03-01-2016/event/19004F6A93AB189C?artistid=1013826&majorcatid=10001&minorcatid=1&tm_link=search_msg-0_19004F6A93AB189C">Buy Ticket</a></div>
+			<div class="col-item"><a href="http://ev9.evenue.net/cgi-bin/ncommerce3/SEGetEventInfo?ticketCode=GS%3AERW%3AUTD16%3AEC03046%3A&linkID=tex-erw&shopperContext=&pc=&caller=&appCode=&groupCode=EC03046&cgc=">Buy Ticket</a></div>
+			<div class="col-item"><a href="http://www8.ticketingcentral.com/V2/Quantity.aspx?t=AAAE0AD78D3235764349DAF&og=-1">Buy Ticket</a></div>
+			<div class="col-item"><a href="http://www.ticketmaster.com/rihanna-anti-world-tour-2016-dallas-texas-03-06-2016/event/0C004F74C1694878?artistid=1013826&majorcatid=10001&minorcatid=1&tm_link=search_msg-0_0C004F74C1694878">Buy Ticket</a></div>
+			<div class="col-item"><a href="http://www.ticketmaster.com/rihanna-anti-world-tour-2016-new-orleans-louisiana-03-08-2016/event/1B004F73E94287C7?artistid=1013826&majorcatid=10001&minorcatid=1&tm_link=search_msg-0_1B004F73E94287C7">Buy Ticket</a></div>
+			<div class="col-item"><a href="http://www.ticketmaster.com/rihanna-anti-world-tour-2016-atlanta-georgia-03-09-2016/event/0E004F748C7E32E4?artistid=1013826&majorcatid=10001&minorcatid=1&tm_link=search_msg-0_0E004F748C7E32E4">Buy Ticket</a></div>
+			<div class="col-item"><a href="http://www.ticketmaster.com/rihanna-anti-world-tour-2016-jacksonville-florida-03-12-2016/event/22004F74C2869D01?artistid=1013826&majorcatid=10001&minorcatid=1&tm_link=search_msg-0_22004F74C2869D01">Buy Ticket</a></div>
+			<div class="col-item"><a href="http://www.ticketmaster.com/rihanna-anti-world-tour-2016-tampa-florida-03-13-2016/event/0D004F74C714B1D4?artistid=1013826&majorcatid=10001&minorcatid=1&tm_link=search_msg-0_0D004F74C714B1D4">Buy Ticket</a></div>
+			<div class="col-item"><a href="http://www.ticketmaster.com/rihanna-anti-world-tour-2016-miami-florida-03-15-2016/event/0D004F74E49DBB97?artistid=1013826&majorcatid=10001&minorcatid=1">Buy Ticket</a></div>
+			<div class="col-item"><a href="http://www.ticketmaster.com/rihanna-anti-world-tour-2016-nashville-tennessee-03-18-2016/event/1B004F74E6BDBB6F?artistid=1013826&majorcatid=10001&minorcatid=1&tm_link=search_msg-0_1B004F74E6BDBB6F">Buy Ticket</a></div>
+			<div class="col-item"><a href="http://www.ticketmaster.com/rihanna-anti-world-tour-2016-cincinnati-ohio-03-19-2016/event/16004F76F1962146?artistid=1013826&majorcatid=10001&minorcatid=1&tm_link=search_msg-0_16004F76F1962146">Buy Ticket</a></div>
+			<div class="col-item"><a href="http://www.ticketmaster.com/rihanna-anti-world-tour-2016-charlotte-north-carolina-03-20-2016/event/0E004F77F783871F?artistid=1013826&majorcatid=10001&minorcatid=1&tm_link=search_msg-0_0E004F77F783871F">Buy Ticket</a></div>
+			<div class="col-item"><a href="http://www.ticketmaster.com/rihanna-anti-world-tour-2016-washington-district-of-columbia-03-22-2016/event/15004F72C3332C78?artistid=1013826&majorcatid=10001&minorcatid=1">Buy Ticket</a></div>
+			<div class="col-item"><a href="http://purchase.tickets.com/buy/TicketPurchase?pid=8146562&agency=FNC_EVENT125">Buy Ticket</a></div>
+			<div class="col-item"><a href="http://www.ticketmaster.com/rihanna-anti-world-tour-2016-auburn-hills-michigan-03-24-2016/event/08004F77C3343356?artistid=1013826&majorcatid=10001&minorcatid=1&tm_link=search_msg-0_08004F77C3343356">Buy Ticket</a></div>
+			<div class="col-item"><a href="http://ev11.evenue.net/cgi-bin/ncommerce3/SEGetEventInfo?ticketCode=GS%3AHARTFORD%3AXL2015%3AEHC0326E%3A&linkID=global-hartford&shopperContext=&pc=&caller=&appCode=&groupCode=RIHANNA&cgc=">Buy Ticket</a></div>
+			<div class="col-item"><a href="http://www.ticketmaster.com/rihanna-anti-world-tour-2016-brooklyn-new-york-03-27-2016/event/00004F74C33F7696?artistid=1013826&majorcatid=10001&minorcatid=1&tm_link=search_msg-0_00004F74C33F7696">Buy Ticket</a></div>
+			<div class="col-item"><a href="http://www.ticketmaster.com/rihanna-anti-world-tour-2016-brooklyn-new-york-03-30-2016/event/00004F7BEFCF497B?artistid=1013826&majorcatid=10001&minorcatid=1&tm_link=search_msg-0_00004F7BEFCF497B">Buy Ticket</a></div>
+			<div class="col-item"><a href="http://www.ticketmaster.com/rihanna-anti-world-tour-2016-newark-new-jersey-04-02-2016/event/02004F76F6B03FE1?artistid=1013826&majorcatid=10001&minorcatid=1&tm_link=search_msg-0_02004F76F6B03FE1">Buy Ticket</a></div>
+			<div class="col-item"><a href="http://ev15.evenue.net/cgi-bin/ncommerce3/SEGetEventInfo?ticketCode=GS%3AWACH%3AWA2015%3AR0403%3A&linkID=global-wachovia&shopperContext=&pc=&caller=&appCode=&groupCode=RIHANNA&cgc=">Buy Ticket</a></div>
+			<div class="col-item"><a href="http://www.ticketmaster.com/rihanna-anti-world-tour-2016-quebec-quebec-04-05-2016/event/10004F74E7FC64C4?artistid=1013826&majorcatid=10001&minorcatid=1&tm_link=search_msg-0_10004F74E7FC64C4">Buy Ticket</a></div>
+			<div class="col-item"><a href="https://wroom.centrebell.ca/eventShopperV3.html?lang=en&skin=evenko&wr=599b6ff6-e22d-41d7-a2d4-6510fd1fb75f&_ga=1.106487685.725412180.1453509176">Buy Ticket</a></div>
+			<div class="col-item"><a href="https://wroom.centrebell.ca/eventShopperV3.html?lang=en&skin=evenko&wr=b880613a-5734-492e-87de-9d25b2f10ae9&_ga=1.114873217.725412180.1453509176">Buy Ticket</a></div>
+			<div class="col-item"><a href="http://www.ticketmaster.com/rihanna-anti-world-tour-2016-baltimore-maryland-04-09-2016/event/15004F73FAE74654?artistid=1013826&majorcatid=10001&minorcatid=1">Buy Ticket</a></div>
+			<div class="col-item"><a href="http://www.ticketmaster.com/rihanna-anti-world-tour-2016-boston-massachusetts-04-10-2016/event/01004F779E3029DA?artistid=1013826&majorcatid=10001&minorcatid=1&tm_link=search_msg-0_01004F779E3029DA">Buy Ticket</a></div>
+			<div class="col-item"><a href="http://www.ticketmaster.com/rihanna-anti-world-tour-2016-toronto-ontario-04-13-2016/event/10004F779F952B28?artistid=1013826&majorcatid=10001&minorcatid=1">Buy Ticket</a></div>
+			<div class="col-item"><a href="http://www.ticketmaster.com/rihanna-anti-world-tour-2016-toronto-ontario-04-14-2016/event/10004F84E89D652C?artistid=1013826&majorcatid=10001&minorcatid=1&tm_link=search_msg-0_10004F84E89D652C">Buy Ticket</a></div>
+			<div class="col-item"><a href="http://www.ticketmaster.com/rihanna-anti-world-tour-2016-chicago-illinois-04-15-2016/event/04004F73CD553022?artistid=1013826&majorcatid=10001&minorcatid=1&tm_link=search_msg-0_04004F73CD553022">Buy Ticket</a></div>
+			<div class="col-item"><a href="http://www.ticketmaster.com/rihanna-anti-world-tour-2016-winnipeg-manitoba-04-18-2016/event/11004F779BF87265?artistid=1013826&majorcatid=10001&minorcatid=1">Buy Ticket</a></div>
+			<div class="col-item"><a href="http://www.ticketmaster.com/rihanna-anti-world-tour-2016-edmonton-alberta-04-20-2016/event/11004F751E133F91?artistid=1013826&majorcatid=10001&minorcatid=1&tm_link=search_msg-0_11004F751E133F91">Buy Ticket</a></div>
+			<div class="col-item"><a href="http://www.ticketmaster.com/rihanna-anti-world-tour-2016-calgary-alberta-04-21-2016/event/11004F7797046E00?artistid=1013826&majorcatid=10001&minorcatid=1&tm_link=search_msg-0_11004F7797046E00">Buy Ticket</a></div>
+			<div class="col-item"><a href="http://www.ticketmaster.com/rihanna-anti-world-tour-2016-vancouver-british-columbia-04-23-2016/event/11004F741968BD01?artistid=1013826&majorcatid=10001&minorcatid=1&tm_link=search_msg-0_11004F741968BD01">Buy Ticket</a></div>
+			<div class="col-item"><a href="http://www.ticketmaster.com/rihanna-anti-world-tour-2016-seattle-washington-04-24-2016/event/0F004F7444B354F9?artistid=1013826&majorcatid=10001&minorcatid=1&tm_link=search_msg-0_0F004F7444B354F9">Buy Ticket</a></div>
+			<div class="col-item"><a href="http://www7.ticketingcentral.com/V2/Quantity.aspx?t=DC4644C08D3235B755B82D6&og=-1">Buy Ticket</a></div>
+			<div class="col-item"><a href="http://www.ticketmaster.com/rihanna-anti-world-tour-2016-las-vegas-nevada-04-29-2016/event/2E004F75E84081B3?artistid=1013826&majorcatid=10001&minorcatid=1&tm_link=search_msg-0_2E004F75E84081B3">Buy Ticket</a></div>
+			<div class="col-item"><a href="http://www.ticketmaster.com/rihanna-anti-world-tour-2016-las-vegas-nevada-04-30-2016/event/2E004F7D1A8981C0?artistid=1013826&majorcatid=10001&minorcatid=1&tm_link=search_msg-0_2E004F7D1A8981C0">Buy Ticket</a></div>
+			<div class="col-item"><a href="http://www.ticketmaster.com/rihanna-anti-world-tour-2016-inglewood-california-05-03-2016/event/09004F7411164AAB?artistid=1013826&majorcatid=10001&minorcatid=1&tm_link=search_msg-0_09004F7411164AAB">Buy Ticket</a></div>
+			<div class="col-item"><a href="http://www.ticketmaster.com/rihanna-anti-world-tour-2016-inglewood-california-05-04-2016/event/09004F7926B7300F?artistid=1013826&majorcatid=10001&minorcatid=1">Buy Ticket</a></div>
+			<div class="col-item"><a href="http://www.ticketmaster.com/rihanna-anti-world-tour-2016-oakland-california-05-07-2016/event/1C004F74967A2D55?artistid=1013826&majorcatid=10001&minorcatid=1&tm_link=search_msg-0_1C004F74967A2D55">Buy Ticket</a></div>
+		</div>
+	</div>
+	<div id="soundcloud">
+		<div class="song">
+			<iframe width="100%" height="200px" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/239793308&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true&amp;color='#ff0000'"></iframe>
+		</div>
+		<div class="song">
+			<iframe width="100%" height="200px" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/239793212&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true&amp;color='#ff0000'"></iframe>
+		</div>
+	</div>
+	<div id="action-figures">
+		<div class="action-figure">
+			<img src="img/front.png" alt="">
+		</div>
+		<div class="action-figure">
+			<p>STORE</p>
+		</div>
+		<div class="action-figure">
+			<img src="img/back.png" alt="">
+
+		</div>
+		<!-- <div class="mobile-action-figure-order"> -->
+			<!-- <p>PRE ORDER</p> -->
+		<!-- </div> -->
+	</div>
+	<!-- <div id="store"> -->
+		<!-- <p>STORE</p> -->
+	<!-- </div> -->
+	<div id="rodeo">
+		<!-- <p>BUY RODEO</p> -->
+	</div>
+	<div id="socials">
+		<span><a target="_blank" href="http://twitter.com/trvisXX"><i class="social social-3x social-twitter"></i></a></span>
+		<span><a target="_blank" href="http://instagram.com/travisscott/"><i class="social social-3x social-instagram"></i></a></span>
+		<span><a target="_blank" href="http://travis-x.tumblr.com/"><i class="social social-3x social-tumblr-square"></i></a></span>
+		<span><a target="_blank" href="https://www.facebook.com/travisscottlaflame?fref=ts"><i class="social social-3x social-facebook-official"></i></a></span>
+	</div>
+	<div id="credit">
+		<p>SITE BY <a target="_blank" href="http://instagram.com/ezzzrrra">EZRA MILLER</a></p>
+	</div>
+	</div>
+
 	<script type="x-shader/x-vertex" id="vertexShader">
 
 		attribute vec4 tangent;
@@ -139,11 +367,11 @@
 		
 		</script>
 	<script src="../common/scripts/js/three.min.js"></script>
-	<script src="../common/scripts/js/CCapture.min.js"></script>
-	<script src="../common/scripts/js/gif.js"></script>
-	<script src="../common/scripts/js/gif.worker.js"></script>
+	<!-- // <script src="../common/scripts/js/CCapture.min.js"></script> -->
+	<!-- // <script src="../common/scripts/js/gif.js"></script> -->
+	<!-- // <script src="../common/scripts/js/gif.worker.js"></script> -->
 	<script src="../common/scripts/js/OrbitControls.js"></script>
-	<script src="../common/scripts/js/Whammy.js"></script>
+	<!-- // <script src="../common/scripts/js/Whammy.js"></script> -->
 	<script src="../common/scripts/js/OBJLoaderGEO.js"></script>
 	<script src="../common/scripts/js/Utils.js"></script>
 	<script src="scripts/js/MultipassMaterial.js"></script>
